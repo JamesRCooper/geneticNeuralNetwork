@@ -3,7 +3,15 @@ This library contains the root components for a neural network to be created and
 
 # High level usage
 ```GO
-  import "github.com/jamescooper/neural/model"
+  package main
+
+  import (
+    "fmt"
+    "math"
+    "math/rand"
+
+    m "github.com/jamescooper/neural/model"
+  )
 
   func main() {
     func main() {
