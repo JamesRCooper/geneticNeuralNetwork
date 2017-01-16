@@ -38,3 +38,11 @@ func NewNetwork(
 	}
 	return Network{networkLayers, numberOfLayers}
 }
+
+//Breed the host network with a partner network using an equal split
+//of genes, as well as using the supplied mutation rate
+func (n *Network) Breed(partnerNetwork *Network) {
+	for index := 0; index < len(n.layers); index++ {
+		n.layers[index].Breed(partnerNetwork.layers[index])
+	}
+}

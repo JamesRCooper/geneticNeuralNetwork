@@ -39,12 +39,12 @@ func readOutputToChan(
 }
 
 //Breed takes two parent layers and attempts to breed children
-func (l *Layer) Breed(pairedLayer Layer) (*Layer, error) {
+func (l *Layer) Breed(pairedLayer Layer) error {
 	if l.inputSize != pairedLayer.inputSize {
-		return new(Layer), NewMismatchError(l.inputSize, pairedLayer.inputSize)
+		return NewMismatchError(l.inputSize, pairedLayer.inputSize)
 	}
 	if l.outputSize != pairedLayer.outputSize {
-		return new(Layer), NewMismatchError(l.outputSize, pairedLayer.inputSize)
+		return NewMismatchError(l.outputSize, pairedLayer.inputSize)
 	}
 
 	neurons := make([]Neuron, l.outputSize)
@@ -62,7 +62,8 @@ func (l *Layer) Breed(pairedLayer Layer) (*Layer, error) {
 	}
 
 	wg.Wait()
-	return &Layer{neurons, l.inputSize, l.outputSize}, nil
+	l.neurons = neurons
+	return nil
 }
 
 //NewLayer creates a new layer of neurons

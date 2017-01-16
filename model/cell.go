@@ -42,7 +42,7 @@ func (c Cell) Process(inputs []float64) (float64, error) {
 	for index, weight := range c.Weights {
 		sum += weight * inputs[index]
 	}
-	return c.character.Activater(sum), nil
+	return c.character.Activater(sum / float64(numOfInputs)), nil
 }
 
 //NumberOfInputs returns the number of inputs a cell can receive
