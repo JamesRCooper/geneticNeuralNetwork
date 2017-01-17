@@ -10,7 +10,11 @@ This library contains the root components for a neural network to be created and
     "math"
     "math/rand"
 
+<<<<<<< HEAD
     m "github.com/JamesRCooper/geneticNeuralNetwork/model"
+=======
+    m "github.com/JamesRCooper/neural/model"
+>>>>>>> e3b028bf059783b5c8ea9878fbce6b7d4024656e
   )
 
   func main() {
