@@ -5,7 +5,7 @@ import (
 	"math"
 	"math/rand"
 
-	m "github.com/jamescooper/neural/model"
+	m "github.com/JamesRCooper/geneticNeuralNetwork/model"
 )
 
 func main() {
