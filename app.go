@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 	"math"
-	"math/rand"
 
 	m "github.com/JamesRCooper/geneticNeuralNetwork/model"
+	"github.com/JamesRCooper/geneticNeuralNetwork/mutation"
 )
 
 func main() {
@@ -14,9 +14,10 @@ func main() {
 
 	layerSizes := []int{4, 3}
 	cellCharacteristics := m.CellCharacter{
-		MutationRate: 0.015,
-		Activater:    sigmoid,
-		GeneCreator:  geneCreator,
+		NeuronBreeder: mutation.BuildGaussianBreeder(
+			0.01, 0.25, mutation.StandardGeneCreator),
+		Activator:   mutation.LogisticSigmoidActivator,
+		GeneCreator: mutation.StandardGeneCreator,
 	}
 	network := m.NewNetwork(3, layerSizes, &cellCharacteristics)
 	value, err := network.CalculateOutput(inputs)
@@ -39,20 +40,3 @@ func calculateOutputError(
 	}
 	return math.Sqrt(sum), nil
 }
-
-func sigmoid(operand float64) float64 {
-	return 1.0 / (1.0 + math.Exp(operand))
-}
-
-func geneCreator() float64 {
-	return 2*rand.Float64() - 1
-}
-
-//For use to plot result
-//"github.com/fogleman/gg"
-/*dc := gg.NewContext(1000, 1000)
-dc.DrawCircle(500, 500, 400)
-dc.SetRGB(0, 0, 0)
-dc.Fill()
-dc.SavePNG("out.png")
-*/

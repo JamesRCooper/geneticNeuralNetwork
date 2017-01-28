@@ -46,3 +46,13 @@ func (n *Network) Breed(partnerNetwork *Network) {
 		n.layers[index].Breed(partnerNetwork.layers[index])
 	}
 }
+
+//Clone creates a new Network with exactly the same behaviour as the original
+func (n Network) Clone() Network {
+	newLayers := make([]Layer, n.numOfLayers)
+	for index := 0; index < n.numOfLayers; index++ {
+		newLayers[index] = n.layers[index].Clone()
+	}
+
+	return Network{newLayers, n.numOfLayers}
+}

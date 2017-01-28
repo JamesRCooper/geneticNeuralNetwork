@@ -66,6 +66,17 @@ func (l *Layer) Breed(pairedLayer Layer) error {
 	return nil
 }
 
+//Clone creates a new layer with the exact same properties of the original
+func (l Layer) Clone() Layer {
+
+	newNeurons := make([]Neuron, l.outputSize)
+	for index := 0; index < l.outputSize; index++ {
+		newNeurons[index] = l.neurons[index].Clone()
+	}
+
+	return Layer{newNeurons, l.inputSize, l.outputSize}
+}
+
 //NewLayer creates a new layer of neurons
 func NewLayer(
 	size int, sizeOfPreviousLayer int, cellCharacter *CellCharacter) Layer {
